@@ -4,6 +4,7 @@ const startBtn = document.getElementById("start");
 const score = document.getElementById("score");
 let squares = [];
 let currentSnake = [2, 1, 0];
+let direction = 1;
 // creating grid
 function createGrid() {
   // 100 of these elements with a loop (for)
@@ -28,7 +29,9 @@ function move() {
   // remove styling the last element
   squares[tail].classList.remove("snake");
   // add sqaure in direction we are heading
+  currentSnake.unshift(currentSnake[0] + direction);
   // add styling for added element
+  squares[currentSnake[0]].classList.add("snake");
 }
 
 move();
