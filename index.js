@@ -27,6 +27,19 @@ currentSnake.forEach((index) => squares[index].classList.add("snake"));
 
 // moving the snake
 function move() {
+  if (
+    // if snake has hit bottom
+    (currentSnake[0] + width >= 100 && direction === 10) ||
+    // if snake has right wall
+    (currentSnake[0] % width === 9 && direction === 1) ||
+    // if snake has left wall
+    (currentSnake[0] % width === 0 && direction === -1) ||
+    // if snake has right wall
+    (currentSnake[0] - width < 0 && direction === -10) ||
+    squares[currentSnake[0] + direction].classList.contains("sanke")
+  )
+    return clearInterval(timerId);
+
   // remove last element from current snake array
   const tail = currentSnake.pop();
   // remove styling the last element
@@ -36,7 +49,6 @@ function move() {
   // add styling for added element
   squares[currentSnake[0]].classList.add("snake");
 }
-
 move();
 
 let timerId = setInterval(move, 1000);
