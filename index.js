@@ -5,6 +5,7 @@ const score = document.getElementById("score");
 let squares = [];
 let currentSnake = [2, 1, 0];
 let direction = 1;
+
 // creating grid
 function createGrid() {
   // 100 of these elements with a loop (for)
@@ -23,6 +24,7 @@ createGrid();
 
 currentSnake.forEach((index) => squares[index].classList.add("snake"));
 
+// moving the snake
 function move() {
   // remove last element from current snake array
   const tail = currentSnake.pop();
@@ -37,3 +39,24 @@ function move() {
 move();
 
 let timerId = setInterval(move, 1000);
+
+// 39 is right arrow
+// 38 is up arrow
+// 37 is left arrow
+// 40 is down arrow
+
+// control function
+
+function control(e) {
+  if (e.keyCode === 39) {
+    console.log("right");
+  } else if (e.keyCode === 38) {
+    console.log("up");
+  } else if (e.keyCode === 37) {
+    console.log("left");
+  } else if (e.keyCode === 40) {
+    console.log("down");
+  }
+}
+
+// document.addEventListener("keyup", control);
