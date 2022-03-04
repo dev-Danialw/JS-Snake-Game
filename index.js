@@ -1,12 +1,13 @@
 //  Grabbing the DOM elements
 const grid = document.querySelector(".grid");
 const startBtn = document.getElementById("start");
-const score = document.getElementById("score");
+const scoreDisplay = document.getElementById("score");
 let squares = [];
 let currentSnake = [2, 1, 0];
 let direction = 1;
 const width = 10;
 let appleIndex = 0;
+let score = 0;
 
 // creating grid
 function createGrid() {
@@ -54,10 +55,15 @@ function move() {
   if (squares[currentSnake[0]].classList.contains("apple")) {
     // grow our snake by adding class="snake"
     squares[currentSnake[0]].classList.remove("apple");
+    squares[tail].classList.add("snake");
     // grow our snake array
+    currentSnake.push(tail);
     // generate new apply
+    generateApple();
     // add one to the score
+    score++;
     // display our score
+    scoreDisplay.textContent = score;
     // speed up our snake
   }
 }
@@ -66,14 +72,14 @@ move();
 let timerId = setInterval(move, 1000);
 
 // Generating Random Apples
-function generateApples() {
+function generateApple() {
   do {
     //  generate a random number
     appleIndex = Math.floor(Math.random() * squares.length);
   } while (squares[appleIndex].classList.contains("snake"));
   squares[appleIndex].classList.add("apple");
 }
-generateApples();
+generateApple();
 
 // 39 is right arrow
 // 38 is up arrow
