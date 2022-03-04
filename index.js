@@ -8,6 +8,8 @@ let direction = 1;
 const width = 10;
 let appleIndex = 0;
 let score = 0;
+let intervalTime = 1000;
+let speed = 0.9;
 
 // creating grid
 function createGrid() {
@@ -65,11 +67,14 @@ function move() {
     // display our score
     scoreDisplay.textContent = score;
     // speed up our snake
+    clearInterval(timerId);
+    intervalTime = intervalTime * speed;
+    timerId = setInterval(move, intervalTime);
   }
 }
 move();
 
-let timerId = setInterval(move, 1000);
+let timerId = setInterval(move, intervalTime);
 
 // Generating Random Apples
 function generateApple() {
